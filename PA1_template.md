@@ -26,6 +26,7 @@ Steps per day
 Sums the steps for each day and eliminates NA values.
 
 ``` r
+opts_chunk$set(echo = TRUE, results = 'hold', message = FALSE, warning = FALSE)
 totalstepsperday <- aggregate(steps~date, activity, sum, na.rm=TRUE)
 
 head(totalstepsperday)
@@ -45,6 +46,7 @@ Mean and Median Steps per Day
 Mean and median number of steps taken each day
 
 ``` r
+opts_chunk$set(echo = TRUE, results = 'hold', message = FALSE, warning = FALSE)
 meansteps <- mean(totalstepsperday$steps)
 meansteps
 
@@ -63,6 +65,7 @@ Time series plot of the average number of steps taken What is the average daily 
 Make a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis) Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 
 ``` r
+opts_chunk$set(echo = TRUE, results = 'hold', message = FALSE, warning = FALSE)
 library(ggplot2)
 
 stepsperint <- aggregate(steps~interval, activity, mean, na.rm=TRUE)
@@ -78,6 +81,7 @@ Interval with most steps
 The 5-minute interval that, on average, contains the maximum number of steps
 
 ``` r
+opts_chunk$set(echo = TRUE, results = 'hold', message = FALSE, warning = FALSE)
 stepsperint <- aggregate(steps~interval, activity, mean, na.rm=TRUE)
 maxinterval <- stepsperint[which.max(stepsperint$steps),]$interval
 maxinterval
@@ -91,6 +95,7 @@ Histogram
 Histogram of the total number of steps taken each day
 
 ``` r
+opts_chunk$set(echo = TRUE, results = 'hold', message = FALSE, warning = FALSE)
 library(ggplot2)
 
 ggplot(data=totalstepsperday, aes(x=steps)) + geom_histogram(binwidth=300) +
@@ -109,6 +114,7 @@ Note that there are a number of days/intervals where there are missing values (c
 Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with NAs)
 
 ``` r
+opts_chunk$set(echo = TRUE, results = 'hold', message = FALSE, warning = FALSE)
 nas <- sum(is.na(activity$steps))
 nas
 ```
@@ -122,6 +128,7 @@ Solution: I will use the mean per interval for imputation
 Create a new dataset that is equal to the original dataset but with the missing data filled in.
 
 ``` r
+opts_chunk$set(echo = TRUE, results = 'hold', message = FALSE, warning = FALSE)
 updated <- function(x, y)
   {
     updatedsteps <- x$steps
@@ -151,6 +158,7 @@ head(activity_2)
 Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
 
 ``` r
+opts_chunk$set(echo = TRUE, results = 'hold', message = FALSE, warning = FALSE)
 library(ggplot2)
 
 spdtotal_2 <- aggregate(steps~date, activity_2, sum, na.rm=TRUE)
@@ -166,6 +174,7 @@ ggplot(data=spdtotal_2, aes(x=steps)) + geom_histogram(binwidth=300) +
 Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
 
 ``` r
+opts_chunk$set(echo = TRUE, results = 'hold', message = FALSE, warning = FALSE)
 meanstepsperday2
 medianstepsperday2
 ```
@@ -183,6 +192,7 @@ Using the imputed data set this part shows the different patterns between weekda
 Note: I'm using the package lubridate to create a variable "dayofweek" where 1=Sunday through 7=Saturday. The variable "DayCategory" indicates weekend vs weekday
 
 ``` r
+opts_chunk$set(echo = TRUE, results = 'hold', message = FALSE, warning = FALSE)
 library(lubridate)
 library(dplyr)
 
@@ -205,6 +215,7 @@ head(activity_2)
 Find the averages for weekday and weekend intervals:
 
 ``` r
+opts_chunk$set(echo = TRUE, results = 'hold', message = FALSE, warning = FALSE)
 stepsperintbydaytype <- aggregate(steps~DayCategory+interval, activity_2, mean, na.rm=TRUE)
 ggplot(stepsperintbydaytype, aes(x=interval, y=steps)) + 
         geom_line(color=rgb(.1,.1,.1)) + 
