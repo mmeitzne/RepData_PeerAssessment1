@@ -1,3 +1,8 @@
+Activity Monitoring Project 1
+================
+Mike Meitzner
+February 18, 2017
+
 ``` r
 library(knitr)
 
